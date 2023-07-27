@@ -17,15 +17,25 @@ myForm.addEventListener('submit', (e) => {
     myLi.innerText = userInput;
     msgContainer.appendChild(myLi)
 
-
+    const url = 'https://open-ai21.p.rapidapi.com/conversation';
     const options = {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
-            'X-RapidAPI-Key': '149f2630cbmsh18c06a33edfbeb9p15a4b5jsn30e3ecf21bac',
-            'X-RapidAPI-Host': 'openai80.p.rapidapi.com'
+            'X-RapidAPI-Key': 'b50a05bcc2msh100ae93e7d7415bp1a0cadjsnf6f85114db8e',
+            'X-RapidAPI-Host': 'open-ai21.p.rapidapi.com'
         },
-        body: '{"model":"gpt-3.5-turbo","messages":[{"role":"user","content":"' + userInput + '"}]}'
+        body: JSON.stringify({
+            messages: [
+                {
+                    role: 'user',
+                    content: userInput
+                }
+            ],
+            max_token: 500,
+            temperature: 1,
+            web_access: false
+        })
     };
 
 
@@ -41,17 +51,18 @@ myForm.addEventListener('submit', (e) => {
     msgContainer.appendChild(li)
 
 
-    fetch('https://openai80.p.rapidapi.com/chat/completions', options)
+    fetch(url, options)
         .then(response => response.json())
         .then(response => {
-            // document.getElementById('data').innerText = response.choices[0].message.content;
+            // document.getElementById('data').innerText = response.ChatGPT;
 
-            // btn.innerHTML = 'Search';
+            btn.innerHTML = 'Search';
 
-            chatgpt[chatgpt.length - 1].innerText = response.choices[0].message.content;
+            chatgpt[chatgpt.length - 1].innerText = response.ChatGPT;
             window.scrollTo(0, window.length);
 
             btn.removeAttribute('disabled');
+            // console.log()
         })
         .catch(err => console.error(err));
 })
