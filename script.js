@@ -17,25 +17,15 @@ myForm.addEventListener('submit', (e) => {
     myLi.innerText = userInput;
     msgContainer.appendChild(myLi)
 
-    const url = 'https://open-ai21.p.rapidapi.com/conversation';
+    const url = 'https://chatgpt-gpt4-ai-chatbot.p.rapidapi.com/ask';
     const options = {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
-            'X-RapidAPI-Key': 'b50a05bcc2msh100ae93e7d7415bp1a0cadjsnf6f85114db8e',
-            'X-RapidAPI-Host': 'open-ai21.p.rapidapi.com'
+            'X-RapidAPI-Key': "9747eca9bemshc591106fa47be23p10a21bjsn8df06d88fd4e",
+            'X-RapidAPI-Host': 'chatgpt-gpt4-ai-chatbot.p.rapidapi.com'
         },
-        body: JSON.stringify({
-            messages: [
-                {
-                    role: 'user',
-                    content: userInput
-                }
-            ],
-            max_token: 500,
-            temperature: 1,
-            web_access: false
-        })
+        body: JSON.stringify({ query: 'hello' })
     };
 
 
@@ -58,11 +48,11 @@ myForm.addEventListener('submit', (e) => {
 
             btn.innerHTML = 'Search';
 
-            chatgpt[chatgpt.length - 1].innerText = response.ChatGPT;
+            chatgpt[chatgpt.length - 1].innerText = response.response;
             window.scrollTo(0, window.length);
 
             btn.removeAttribute('disabled');
-            // console.log()
+            // console.log(response)
         })
         .catch(err => console.error(err));
 })
