@@ -25,7 +25,7 @@ myForm.addEventListener('submit', (e) => {
             'X-RapidAPI-Key': "9747eca9bemshc591106fa47be23p10a21bjsn8df06d88fd4e",
             'X-RapidAPI-Host': 'chatgpt-gpt4-ai-chatbot.p.rapidapi.com'
         },
-        body: JSON.stringify({ query: 'hello' })
+        body: JSON.stringify({ query: userInput })
     };
 
 
